@@ -1,17 +1,31 @@
-"use client"
+"use client";
 
-import { Inbox, AlertCircle, Send, Archive, Pin, ChevronDown, Plus, LogOut, BookOpen } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import type { MailFolder } from "@/lib/types"
+import {
+  Inbox,
+  AlertCircle,
+  Send,
+  Archive,
+  Pin,
+  ChevronDown,
+  Plus,
+  LogOut,
+  BookOpen,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import type { MailFolder } from "@/lib/types";
 
 interface MailSidebarProps {
-  activeFolder: MailFolder
-  onFolderChange: (folder: MailFolder) => void
-  onSignOut: () => void
+  activeFolder: MailFolder;
+  onFolderChange: (folder: MailFolder) => void;
+  onSignOut: () => void;
 }
 
-export function MailSidebar({ activeFolder, onFolderChange, onSignOut }: MailSidebarProps) {
+export function MailSidebar({
+  activeFolder,
+  onFolderChange,
+  onSignOut,
+}: MailSidebarProps) {
   const folders = [
     { id: "all" as MailFolder, label: "All Mail", icon: BookOpen, count: 16 },
     { id: "inbox" as MailFolder, label: "Inbox", icon: Inbox },
@@ -19,10 +33,10 @@ export function MailSidebar({ activeFolder, onFolderChange, onSignOut }: MailSid
     { id: "sent" as MailFolder, label: "Sent", icon: Send },
     { id: "archive" as MailFolder, label: "Archive", icon: Archive },
     { id: "pinned" as MailFolder, label: "Pinned", icon: Pin },
-  ]
+  ];
 
   return (
-    <aside className="w-56 border-r bg-white flex flex-col">
+    <aside className="w-56 bg-[#F7F8FC] flex flex-col justify-between h-full">
       <div className="flex-1 p-4 space-y-1">
         {folders.map((folder) => (
           <Button
@@ -30,17 +44,23 @@ export function MailSidebar({ activeFolder, onFolderChange, onSignOut }: MailSid
             variant="ghost"
             className={cn(
               "w-full justify-start gap-3 px-3 py-2 h-auto font-normal",
-              activeFolder === folder.id && "bg-gray-200 text-gray-900 font-medium",
+              activeFolder === folder.id &&
+                "bg-gray-200 text-[#0D034A] font-bold"
             )}
             onClick={() => onFolderChange(folder.id)}
           >
             <folder.icon className="h-5 w-5" />
             <span className="flex-1 text-left">{folder.label}</span>
-            {folder.count && <span className="text-sm text-gray-600">{folder.count}</span>}
+            {folder.count && (
+              <span className="text-sm text-gray-600">{folder.count}</span>
+            )}
           </Button>
         ))}
 
-        <Button variant="ghost" className="w-full justify-start gap-3 px-3 py-2 h-auto font-normal">
+        <Button
+          variant="ghost"
+          className="w-full justify-start gap-3 px-3 py-2 h-auto font-normal"
+        >
           <ChevronDown className="h-5 w-5" />
           <span className="flex-1 text-left">More</span>
         </Button>
@@ -55,7 +75,7 @@ export function MailSidebar({ activeFolder, onFolderChange, onSignOut }: MailSid
         </div>
       </div>
 
-      <div className="p-4 border-t">
+      <div className="p-4 ">
         <Button
           variant="ghost"
           className="w-full justify-start gap-3 px-3 py-2 h-auto font-normal text-red-600 hover:text-red-700 hover:bg-red-50"
@@ -66,5 +86,5 @@ export function MailSidebar({ activeFolder, onFolderChange, onSignOut }: MailSid
         </Button>
       </div>
     </aside>
-  )
+  );
 }
