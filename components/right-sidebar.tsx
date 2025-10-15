@@ -36,7 +36,7 @@ export function RightSidebar({ activeView, onViewChange }: RightSidebarProps) {
           key={view.id}
           variant="ghost"
           size="icon"
-          className={cn("h-12 w-12 rounded-xl", activeView === view.id && "bg-gray-100")}
+          className={cn("h-12 w-12 rounded-xl cursor-pointer", activeView === view.id && "bg-gray-100")}
           onClick={() => onViewChange(activeView === view.id ? null : view.id)}
         >
           <img src={view.icon || "/placeholder.svg"} className={cn("h-6 w-6", view.color)} />
