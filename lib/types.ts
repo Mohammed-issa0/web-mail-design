@@ -19,3 +19,20 @@ export interface Label {
   name: string
   color: string
 }
+
+export interface Task {
+  id: string
+  title: string
+  date: string
+  completed: boolean
+  createdAt: number
+}
+
+export interface Contact {
+  id: string
+  name: string
+  email: string
+  phone?: string
+  avatar?: string
+  createdAt: number
+}

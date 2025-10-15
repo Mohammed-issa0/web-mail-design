@@ -8,7 +8,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Web Mail App",
   description: "Professional web mail application",
-   
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
